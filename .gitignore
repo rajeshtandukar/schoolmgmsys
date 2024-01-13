@@ -22,7 +22,7 @@ application/config/database.php
 application/config/config.php
 backend/captcha_images/*
 application/config/license.php
-
+uploads/*
 
 rrcleaning
 rrcleaning/*
