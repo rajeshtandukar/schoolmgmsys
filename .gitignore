@@ -19,3 +19,4 @@ application/logs/*
 
 # to differentiate Dev/Prod setup
 application/config/database.php
+application/config/config.php
