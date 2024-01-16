@@ -34,6 +34,52 @@
                         }
                         ?>  
                         <div class="<?php echo $bgoffsetbg; ?>">  
+                          
+                            <div class="col-lg-8 col-md-8 col-sm-12 nopadding-2">
+                               <div class="d-flex align-items-center text-wrap flex-column justify-content-center bg-position-sm-left bg-position-lg-center" style="background: url('<?php echo base_url(); ?>uploads/school_content/login_image/<?php echo $school['admin_login_page_background']; ?>') no-repeat; background-size:cover">  
+                                <div class="<?php if ($notice){ ?> bg-shadow-remove <?php } ?>">
+                                <?php
+                                    if ($notice) {
+                                ?>
+                               
+                                <h3 class="h3"><?php echo $this->lang->line('whats_new_in'); ?> <?php echo $school['name']; ?>   </h3>
+                                <div class="loginright mCustomScrollbar">
+                                    <div class="messages"> 
+
+                                        <?php
+                                        foreach ($notice as $notice_key => $notice_value) {
+                                            ?>
+                                            <h4><?php echo $notice_value['title']; ?></h4>
+
+                                            <?php
+                                            $string = ($notice_value['description']);
+                                            $string = strip_tags($string);
+                                            if (strlen($string) > 100) {
+
+                                                // truncate string
+                                                $stringCut = substr($string, 0, 100);
+                                                $endPoint = strrpos($stringCut, ' ');
+
+                                                //if the string doesn't contain any space then it will cut without word basis.
+                                                $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                                $string .= '... <a class=more href="' . site_url('read/' . $notice_value['slug']) . '" target="_blank">' . $this->lang->line('read_more') . '  </a>';
+                                            }
+                                            echo '<p>' . $string . '</p>';
+                                            ?>
+
+                                            <div class="logdivider"></div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>  
+                                </div>
+                                <?php
+                                    }
+                                ?>
+                              </div>  
+                              </div>  
+                            </div><!--./col-lg-6-->
+                            
                             <div class="col-lg-4 col-md-4 col-sm-12 nopadding <?php echo $bgoffsetbgno; ?> <?php echo $offset; ?>">
                                  
                                 <div class="loginbg">  
@@ -92,50 +138,7 @@
                                 </div>
                             </div>
                             
-                                <div class="col-lg-8 col-md-8 col-sm-12 nopadding-2">
-                                   <div class="d-flex align-items-center text-wrap flex-column justify-content-center bg-position-sm-left bg-position-lg-center" style="background: url('<?php echo base_url(); ?>uploads/school_content/login_image/<?php echo $school['admin_login_page_background']; ?>') no-repeat; background-size:cover">  
-                                    <div class="<?php if ($notice){ ?> bg-shadow-remove <?php } ?>">
-                                    <?php
-                                        if ($notice) {
-                                    ?>
-                                   
-                                    <h3 class="h3"><?php echo $this->lang->line('whats_new_in'); ?> <?php echo $school['name']; ?>   </h3>
-                                    <div class="loginright mCustomScrollbar">
-                                        <div class="messages"> 
-
-                                            <?php
-                                            foreach ($notice as $notice_key => $notice_value) {
-                                                ?>
-                                                <h4><?php echo $notice_value['title']; ?></h4>
-
-                                                <?php
-                                                $string = ($notice_value['description']);
-                                                $string = strip_tags($string);
-                                                if (strlen($string) > 100) {
-
-                                                    // truncate string
-                                                    $stringCut = substr($string, 0, 100);
-                                                    $endPoint = strrpos($stringCut, ' ');
-
-                                                    //if the string doesn't contain any space then it will cut without word basis.
-                                                    $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                                                    $string .= '... <a class=more href="' . site_url('read/' . $notice_value['slug']) . '" target="_blank">' . $this->lang->line('read_more') . '  </a>';
-                                                }
-                                                echo '<p>' . $string . '</p>';
-                                                ?>
-
-                                                <div class="logdivider"></div>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>  
-                                    </div>
-                                    <?php
-                                        }
-                                    ?>
-                                  </div>  
-                                  </div>  
-                                </div><!--./col-lg-6-->
+                          
                                 
                         </div>  
                     </div>
