@@ -9,7 +9,7 @@ foreach ($sessionList as $session_key => $session_value) {
 if ($sessionData['session_id'] == $session_value['id']) {
         echo "selected='selected'";
     }
-    ?>><?php echo $session_value['session']; ?></option>
+    ?>><?php echo $session_value['session_text']; ?></option>
                         <?php
 }
 ?>

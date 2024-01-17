@@ -68,7 +68,6 @@ class Sessions extends Admin_Controller
                 'session' => $this->input->post('session'),
             );
             $this->session_model->add($data);
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-left">' . $this->lang->line('success_message') . '</div>');
             redirect('sessions/index');
         }
     }
@@ -93,6 +92,7 @@ class Sessions extends Admin_Controller
             $data = array(
                 'id'      => $id,
                 'session' => $this->input->post('session'),
+                'session_text' => $this->input->post('session_text'),
             );
             $this->session_model->add($data);
             $this->session->set_flashdata('msg', '<div class="alert alert-success text-left">' . $this->lang->line('update_message') . '</div>');

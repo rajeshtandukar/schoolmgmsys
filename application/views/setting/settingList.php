@@ -92,7 +92,7 @@
                                                         if ($session['id'] == $result->session_id) {
                                                             echo "selected";
                                                         }
-                                                        ?>><?php echo $session['session'] ?></option>
+                                                        ?>><?php echo $session['session_text'] ?></option>
                                                             <?php } ?>
                                                 </select>
                                                 <span class="text-danger"><?php echo form_error('session_id'); ?></span>

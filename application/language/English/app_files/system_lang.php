@@ -1869,6 +1869,7 @@ $lang['separated'] = "Separated";
 $lang['september'] = "September";	
 $lang['server_key'] = "Server Key";	
 $lang['session'] = "Session";	
+$lang['session_text'] = "Session Name";	
 $lang['session_changed_successfully'] = "Session Changed Successfully";	
 $lang['session_list'] = "Session List";	
 $lang['session_setting'] = "Session Setting";	

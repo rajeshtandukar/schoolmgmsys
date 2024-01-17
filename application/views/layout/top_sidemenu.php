@@ -3,7 +3,7 @@
     if ($this->rbac->hasPrivilege('quick_session_change', 'can_view')) {
     ?>
         <li class="removehover">
-            <a data-toggle="modal" data-target="#sessionModal"><span><?php echo $this->lang->line('current_session') . ": " . $this->setting_model->getCurrentSessionName(); ?></span><i class="fa fa-pencil pull-right"></i></a>
+            <a data-toggle="modal" data-target="#sessionModal"><span><?php echo $this->lang->line('current_session') . ": " . $this->setting_model->getCurrentSessionText(); ?></span><i class="fa fa-pencil pull-right"></i></a>
 
         </li>
     <?php } ?>

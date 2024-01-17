@@ -17,6 +17,13 @@
                                     ?>
                                 <?php } ?>
                                 <?php echo $this->customlib->getCSRF(); ?>
+
+                                <div class="form-group mb5">
+                                    <label><?php echo $this->lang->line('session_text'); ?></label><small class="req"> *</small>
+                                    <input autofocus="" id="session_text" name="session_text" placeholder="" type="text" class="form-control"  value="<?php echo set_value('session_text', $session['session_text']); ?>" />
+                                    <span class="text-danger"><?php echo form_error('session_text'); ?></span>
+                                </div>
+
                                 <div class="form-group mb5">
                                     <label for="exampleInputEmail1"><?php echo $this->lang->line('session'); ?></label><small class="req"> *</small>
                                     <input autofocus="" id="session" name="session" placeholder="" type="text" class="form-control"  value="<?php echo set_value('session', $session['session']); ?>" />
@@ -53,6 +60,7 @@
                             <table class="table table-striped table-bordered table-hover example">
                                 <thead>
                                     <tr>
+                                         <th><?php echo $this->lang->line('session_text'); ?></th>
                                         <th><?php echo $this->lang->line('session'); ?></th>
                                         <th><?php echo $this->lang->line('status'); ?></th>
                                         <th class="text-right noExport"><?php echo $this->lang->line('action'); ?></th>
@@ -64,6 +72,7 @@
                                     foreach ($sessionlist as $session) {
                                         ?>
                                         <tr>
+                                            <td class="mailbox-name"><?php echo $session['session_text'] ?></td>
                                             <td class="mailbox-name"><?php echo $session['session'] ?></td>
                                             <td class="mailbox-name"><?php
                                                 if ($session['active'] != 0) {
