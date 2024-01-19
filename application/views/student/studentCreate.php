@@ -4,6 +4,8 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 <link href="<?php echo base_url(); ?>backend/multiselect/css/jquery.multiselect.css" rel="stylesheet">
 <script src="<?php echo base_url(); ?>backend/multiselect/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>backend/multiselect/js/jquery.multiselect.js"></script>
+<script src="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.js"></script>
+<link rel="stylesheet" href="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.css">
 <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
@@ -138,6 +140,14 @@ if (set_value('gender') == $key) {
                                                 <input id="dob" name="dob" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('dob'); ?>" />
                                                 <span class="text-danger"><?php echo form_error('dob'); ?></span>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label style="color : red;">Nepali Date: </label>
+                                            <input type="text" value="" name="date" id="date-picker" placeholder="Select Date">
+                                            <p class="output"></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1290,6 +1300,20 @@ if (($userdata["role_id"] == 2)) {
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>
 
 <script>
+
+$("#date-picker").nepaliDatePicker({
+        dateFormat: "%y-%m-%d",
+        closeOnDateSelect: true
+    });
+
+    $("#date-picker").on("dateSelect", function(event) {
+        console.log(event);
+        var date = event.datePickerData.adDate;
+        // console.log(`${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`);
+        console.log("ad date", JSON.stringify(date));
+        console.log("ad date", date.toLocaleDateString());
+        $('#dob').val(date.toLocaleDateString());
+    });
 
 $('#transport_feemaster_id').multiselect({
     columns: 1,
