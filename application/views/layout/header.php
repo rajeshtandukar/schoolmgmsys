@@ -45,7 +45,7 @@ $this->load->view('layout/theme');
         <!--language css-->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>backend/dist/css/bootstrap-select.min.css">
-        <script src="<?php echo base_url(); ?>backend/custom/jquery.min.js"></script>
+        <!--<script src="<?php //echo base_url(); ?>backend/custom/jquery.min.js"></script>-->
         <script language="javascript" src="<?php echo base_url(); ?>backend/custom/jquery-2.2.4.js"></script>
         <script src="<?php echo base_url(); ?>backend/dist/js/moment.min.js"></script>
 
@@ -59,9 +59,7 @@ $this->load->view('layout/theme');
         <script src="<?php echo base_url(); ?>backend/js/sstoast.js"></script>
         <script src="<?php echo base_url(); ?>backend/js/export_lib.js"></script>
         <link href="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.css" rel="stylesheet">
-        <script src="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.js"></script>
-
-        <script src="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.js"></script>
+        
         <link rel="stylesheet" href="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.css">
 <!-- this should go after your </body> -->
         <!-- fullCalendar -->

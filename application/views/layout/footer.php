@@ -193,6 +193,9 @@ if ($language_name != 'en') {
 <?php if (($this->module_lib->hasModule('multi_branch') && $this->module_lib->hasActive('multi_branch')) || $this->db->multi_branch) { ?>
     <?php $this->load->view('layout/multi_branch'); ?>
 <?php } ?>
+<script src="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.js"></script>
+<script src="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.js"></script>
+
 
 <script type="text/javascript">
     var calendar_date_time_format = '<?php echo $result = strtr($this->customlib->getSchoolDateFormat(), ['d' => 'DD', 'm' => 'MM', 'M' => 'MMM', 'Y' => 'YYYY']) ?>';
@@ -500,27 +503,29 @@ if ($language_name != 'en') {
             });
         });
 
-        $('.datetime_twelve_hour').datetimepicker({
+        /*$('.datetime_twelve_hour').datetimepicker({
             format: calendar_date_time_format + ' hh:mm a'
-        });
+        });*/
 
-
+        /*
         $("#event_date").daterangepicker({
             timePickerIncrement: 5,
             locale: {
                 format: calendar_date_time_format
             }
-        });
+        });*/
 
         ///================
-
+        /*
         $('.event_from').datetimepicker({
             format: calendar_date_time_format + ' hh:mm A',
         });
-
+        */
+        /*
         $('.event_to').datetimepicker({
             format: calendar_date_time_format + ' hh:mm A',
         });
+        */
 
         //==============
 
@@ -661,6 +666,7 @@ if ($language_name != 'en') {
 
     $(document).ready(function() {
 
+
         $(".date").each(function(e,cnt){
             $(this).after(
                 `
@@ -677,10 +683,11 @@ if ($language_name != 'en') {
             $(this).prop('disabled', true)
         })
 
-        $(".date-nepali").nepaliDatePicker({
+       $(".date-nepali").nepaliDatePicker({
             dateFormat: "%y-%m-%d",
             closeOnDateSelect: true
         });
+
 
         $(".date-nepali").on("dateSelect", function(event) {
               var date = event.datePickerData.adDate;             
@@ -688,7 +695,5 @@ if ($language_name != 'en') {
         });
 
     });
-
-    //$(".date").prop('disabled', true);
 
 </script>
