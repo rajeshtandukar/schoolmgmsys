@@ -58,7 +58,12 @@ $this->load->view('layout/theme');
         <script src="<?php echo base_url(); ?>backend/js/school-admin-custom.js"></script>
         <script src="<?php echo base_url(); ?>backend/js/sstoast.js"></script>
         <script src="<?php echo base_url(); ?>backend/js/export_lib.js"></script>
-        
+        <link href="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.css" rel="stylesheet">
+        <script src="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.js"></script>
+
+        <script src="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.js"></script>
+        <link rel="stylesheet" href="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.css">
+<!-- this should go after your </body> -->
         <!-- fullCalendar -->
         <link rel="stylesheet" href="<?php echo base_url() ?>backend/fullcalendar/dist/fullcalendar.min.css">
         <link rel="stylesheet" href="<?php echo base_url() ?>backend/fullcalendar/dist/fullcalendar.print.min.css" media="print">
@@ -74,7 +79,19 @@ $this->load->view('layout/theme');
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
 
+ <?php
+if ($this->config->item('SSLK') == "") {
+    ?>
+ <div class="topaleart">
+    <div class="slidealert">
+    <div class="alert alert-dismissible topaleart-inside">
+   <p class="palert"><strong>Alert!</strong> You are using unregistered version of Smart School. Please <a  href="#" class="purchasemodal">click here</a> to register your purchase code for Smart School.</p>
+</div></div>
+</div>
+                    <?php
+}
 
+?>
 <script>
 
     function collapseSidebar() {
