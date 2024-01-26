@@ -2,13 +2,8 @@
 $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 ?>
 <link href="<?php echo base_url(); ?>backend/multiselect/css/jquery.multiselect.css" rel="stylesheet">
-<script src="<?php echo base_url(); ?>backend/multiselect/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>backend/multiselect/js/jquery.multiselect.js"></script>
-<link href="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.css" rel="stylesheet">
-<script src="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.js"></script>
 
-<script src="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.js"></script>
-<link rel="stylesheet" href="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.css">
 <!-- this should go after your </body> -->
 <div class="content-wrapper">
     <!-- Main content -->
@@ -148,13 +143,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                     </div>
 
 
-                                    <div class="form-group row">
-                                        <div class="col-sm-6">
-                                        <label style="color : red;">Nepali Date: </label>
-                                            <input type="text" value="" name="date" id="date-picker" placeholder="Select Date">
-                                            <p class="output"></p>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="row">
                                         <?php if ($sch_setting->category) {
@@ -1438,19 +1427,6 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
     });
 </script>
 <script>
-    $("#date-picker").nepaliDatePicker({
-        dateFormat: "%y-%m-%d",
-        closeOnDateSelect: true
-    });
-
-    $("#date-picker").on("dateSelect", function(event) {
-        console.log(event);
-        var date = event.datePickerData.adDate;
-        // console.log(`${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`);
-        console.log("ad date", JSON.stringify(date));
-        console.log("ad date", date.toLocaleDateString());
-        $('#dob').val(date.toLocaleDateString());
-    });
 
     $(".guardian_email").keyup(function() {
         var student_id = "<?php echo $id; ?>";
