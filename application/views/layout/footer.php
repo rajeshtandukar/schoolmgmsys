@@ -661,37 +661,34 @@ if ($language_name != 'en') {
 
     $(document).ready(function() {
 
-        var dateElement = $(".date");
+        $(".date").each(function(e,cnt){
+            $(this).after(
+                `
+                  <div class="form-group row">
+                    <div class="col-sm-6 ">
+                        <label style="color: red;">Nepali Date: </label>
+                        <input type="text" value="" class="date-nepali form-control" placeholder="Select Date">
+                        <p class="output"></p>
+                    </div>
+                </div>
+                `
+            )
 
-        // Check if the element with class "date" exists
-        if (dateElement.length > 0) {
-            // Append the HTML after the element with class "date"
-            dateElement.after(`
-        <div class="form-group row">
-            <div class="col-sm-6 date-nepali">
-                <label style="color: red;">Nepali Date: </label>
-                <input type="text" value="" name="date" id="date-picker" placeholder="Select Date">
-                <p class="output"></p>
-            </div>
-        </div>
-    `);
-        }
+            $(this).prop('disabled', true)
+        })
 
         $(".date-nepali").nepaliDatePicker({
             dateFormat: "%y-%m-%d",
             closeOnDateSelect: true
         });
+
         $(".date-nepali").on("dateSelect", function(event) {
-            console.log(event);
-            var date = event.datePickerData.adDate;
-            // console.log(`${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`);
-            // $('#dob').val(date.toLocaleDateString());
-            $('.date').val(date.toLocaleDateString());
+              var date = event.datePickerData.adDate;             
+              $(this).parents('.form-group').find('.date').val(date.toLocaleDateString());
         });
 
     });
 
+    //$(".date").prop('disabled', true);
 
-
-    $(".date").prop('disabled', true);
 </script>
