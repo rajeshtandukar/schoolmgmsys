@@ -195,7 +195,9 @@ if ($language_name != 'en') {
 <?php } ?>
 <script src="<?php echo base_url(); ?>backend/nepali-calender/nepali-date-picker.min.js"></script>
 <script src="https://leapfrogtechnology.github.io/nepali-date-picker/dist/nepaliDatePicker.min.js"></script>
-
+<style>
+    .nepali-date-picker .drop-down-content {padding: 0}
+</style>
 
 <script type="text/javascript">
     var calendar_date_time_format = '<?php echo $result = strtr($this->customlib->getSchoolDateFormat(), ['d' => 'DD', 'm' => 'MM', 'M' => 'MMM', 'Y' => 'YYYY']) ?>';
@@ -665,35 +667,60 @@ if ($language_name != 'en') {
     });
 
     $(document).ready(function() {
-
-
         $(".date").each(function(e,cnt){
-            $(this).after(
-                `
-                  <div class="form-group row">
-                    <div class="col-sm-6 ">
-                        <label style="color: red;">Nepali Date: </label>
-                        <input type="text" value="" class="date-nepali form-control" placeholder="Select Date">
-                        <p class="output"></p>
-                    </div>
-                </div>
-                `
-            )
 
+            var parent =  $(this).parents('.form-group')
+            // Get the label tag
+            var labelElement = $(this).parents('.form-group').find('label')               
+            var labelText = labelElement.text()             
+            var clone = null
+           
+            labelElement
+                .text(labelText+"(AD)")
+                .css('color',"#808080")
+
+            var appendedHtml = $(`
+                <div class="form-group">
+                    <label>${labelText}(BS)</label>
+                    <input type="text" value="" class="date-nepali form-control" placeholder="Select Date">
+                    <p class="output"></p>
+                </div>
+            `);
+
+            parent.before(appendedHtml)
+            //$(this).after(appendedHtml);
+            var nextLabel = appendedHtml.find('label');
+                      
+            if (labelElement.next('small.req').length >0){
+                console.log('Element Exists');
+                var clone = labelElement.next('small.req').clone();
+                nextLabel.after(clone);
+            }        
             $(this).prop('disabled', true)
         })
 
-       $(".date-nepali").nepaliDatePicker({
+        $(".date-nepali").nepaliDatePicker({
             dateFormat: "%y-%m-%d",
             closeOnDateSelect: true
         });
 
-
         $(".date-nepali").on("dateSelect", function(event) {
-              var date = event.datePickerData.adDate;             
-              $(this).parents('.form-group').find('.date').val(date.toLocaleDateString());
+            var date = event.datePickerData.adDate; 
+            //$(this).parents('.form-group').next().find('.date').val(date.toLocaleDateString());
+
+            const inputDate = new Date(date);
+
+            // Extract year, month, and day components
+            const year = inputDate.getFullYear();
+            const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(inputDate.getDate()).padStart(2, '0');
+
+            // Create the formatted date string
+            const formattedDate = `${year}/${month}/${day}`;
+            $(this).parents('.form-group').next().find('.date').val(formattedDate);
+            
         });
 
+        //console.log( calendarFunctions.getBsDateByAdDate(2024, 1, 27) )
     });
-
 </script>

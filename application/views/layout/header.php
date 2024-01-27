@@ -71,6 +71,9 @@ $this->load->view('layout/theme');
             var chk_validate="<?php echo $this->config->item('SSLK') ?>";
         </script>
 
+
+        
+
   <style type="text/css">
         span.flag-icon.flag-icon-us{text-orientation: mixed;}
   </style>
