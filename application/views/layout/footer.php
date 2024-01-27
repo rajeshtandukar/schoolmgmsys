@@ -668,7 +668,7 @@ if ($language_name != 'en') {
 
     $(document).ready(function() {
         $(".date").each(function(e,cnt){
-
+            var rootNode = $(this).parents('.form-group').parent()           
             var parent =  $(this).parents('.form-group')
             // Get the label tag
             var labelElement = $(this).parents('.form-group').find('label')               
@@ -697,10 +697,14 @@ if ($language_name != 'en') {
                 nextLabel.after(clone);
             }        
             $(this).prop('disabled', true)
+
+            //rootNode.find('.form-group:first').css('float', 'left')
+            //rootNode.find('.form-group:last').css('float', 'right')
+            rootNode.find('.form-group').css('float', 'left')
         })
 
         $(".date-nepali").nepaliDatePicker({
-            dateFormat: "%y-%m-%d",
+            dateFormat: "%y/%m/%d",
             closeOnDateSelect: true
         });
 
