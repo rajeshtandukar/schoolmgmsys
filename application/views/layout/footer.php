@@ -589,6 +589,16 @@ if ($language_name != 'en') {
     }
 </script>
 <script type="text/javascript">
+
+    var dateFormat = '<?php echo $this->customlib->getSchoolDateFormat();?>';
+   
+    var nepalDateFormat = dateFormat
+        .replace(/y/ig, '%y')
+        .replace(/m/g, '%m')
+        .replace(/d/g, '%d')       
+        .replace(/M/g, '%M');
+
+    console.log('Nepal Format', nepalDateFormat)
     $(document).on('change', '#currencySwitcher', function(e) {
         $.ajax({
             type: 'POST',
@@ -666,6 +676,57 @@ if ($language_name != 'en') {
 
     });
 
+function getNumericMonth(monthName) {
+    var monthsMapping = {
+        'Jan': 1,
+        'Feb': 2,
+        'Mar': 3,
+        'Apr': 4,
+        'May': 5,
+        'Jun': 6,
+        'Jul': 7,
+        'Aug': 8,
+        'Sep': 9,
+        'Oct': 10,
+        'Nov': 11,
+        'Dec': 12
+    }
+
+     // Convert monthName to uppercase to make the comparison case-insensitive
+    var uppercaseMonthName = monthName.charAt(0).toUpperCase() + monthName.slice(1).toLowerCase();
+
+    // Get the numeric month value from the mapping
+    var numericMonth = monthsMapping[uppercaseMonthName];
+
+    // Return null if the monthName is not recognized
+    return numericMonth !== undefined ? numericMonth : null;
+}
+
+function extractDateComponents(dateString) {
+    // Define regular expressions for different date formats
+    const dateParts = dateString.split(/[-\/.]/);
+    const formatParts = dateFormat.split(/[-\/.]/);
+
+    let day, month, year;
+    for (let i = 0; i < formatParts.length; i++) {
+        const formatPart = formatParts[i] //.toLowerCase();
+        if (formatPart === 'd') {
+            day = parseInt(dateParts[i]);
+        } else if (formatPart === 'm') {
+            month = parseInt(dateParts[i]);
+        } else if (formatPart === 'M') {
+            month = dateParts[i];          
+            month = parseInt(getNumericMonth(month))
+        } else if (formatPart === 'Y') {
+            year = parseInt(dateParts[i]);
+        }
+
+    }
+    
+    return { day, month, year };
+}
+
+
     $(document).ready(function() {
         $(".date").each(function(e,cnt){
             var rootNode = $(this).parents('.form-group').parent()           
@@ -674,7 +735,15 @@ if ($language_name != 'en') {
             var labelElement = $(this).parents('.form-group').find('label')               
             var labelText = labelElement.text()             
             var clone = null
-           
+            var name= $(this).prop('name')
+            var existingEnglishDate =  $(this).prop('value')
+            var currentNepalDate = ''
+            if(existingEnglishDate!=''){
+                dateComponent = extractDateComponents(existingEnglishDate)    
+                bsDate = calendarFunctions.getBsDateByAdDate(dateComponent.year, dateComponent.month, dateComponent.day)                 
+                currentNepalDate= calendarFunctions.bsDateFormat(nepalDateFormat,  bsDate.bsYear, bsDate.bsMonth, bsDate.bsDate);                              
+            }
+            
             labelElement
                 .text(labelText+"(AD)")
                 .css('color',"#808080")
@@ -682,10 +751,12 @@ if ($language_name != 'en') {
             var appendedHtml = $(`
                 <div class="form-group">
                     <label>${labelText}(BS)</label>
-                    <input type="text" value="" class="date-nepali form-control" placeholder="Select Date">
+                    <input type="text" class="date-nepali form-control" placeholder="Select Date" value="${currentNepalDate}">
+                    <input type="hidden" name="${name}" value="${existingEnglishDate}" />
                     <p class="output"></p>
                 </div>
             `);
+            $(this).prop('name', name+'_' )
 
             parent.before(appendedHtml)
             //$(this).after(appendedHtml);
@@ -704,7 +775,7 @@ if ($language_name != 'en') {
         })
 
         $(".date-nepali").nepaliDatePicker({
-            dateFormat: "%y/%m/%d",
+            dateFormat: nepalDateFormat, //"%y/%m/%d",
             closeOnDateSelect: true
         });
 
@@ -720,11 +791,21 @@ if ($language_name != 'en') {
             const day = String(inputDate.getDate()).padStart(2, '0');
 
             // Create the formatted date string
-            const formattedDate = `${year}/${month}/${day}`;
+            //const formattedDate = `${year}/${month}/${day}`;
+
+            const formattedDate = dateFormat
+                .replace(/y/ig, year)
+                .replace(/m/ig, month)
+                .replace(/d/ig, day);
+
             $(this).parents('.form-group').next().find('.date').val(formattedDate);
+            $(this).next().val(formattedDate);
             
         });
 
         //console.log( calendarFunctions.getBsDateByAdDate(2024, 1, 27) )
     });
+
+
+
 </script>
