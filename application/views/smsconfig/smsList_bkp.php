@@ -16,42 +16,63 @@
                        <h3 class="box-title titlefix"></i> <?php echo $this->lang->line('sms_setting'); ?></h3>
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab"><?php echo $this->lang->line('sparrow_sms'); ?></a></li>
-                        
+                        <li class="active"><a href="#tab_1" data-toggle="tab"><?php echo $this->lang->line('clickatell_sms_gateway'); ?></a></li>
+                        <li><a href="#tab_2" data-toggle="tab"><?php echo $this->lang->line('twilio_sms_gateway'); ?></a></li>
+                        <li><a href="#tab_4" data-toggle="tab"><?php echo $this->lang->line('msg_ninty_one'); ?></a></li>
+                        <li><a href="#tab_6" data-toggle="tab"><?php echo $this->lang->line('text_local'); ?></a></li>
+                        <li><a href="#tab_5" data-toggle="tab"><?php echo $this->lang->line('sms_country'); ?></a></li>
+                        <li><a href="#tab_7" data-toggle="tab"><?php echo $this->lang->line('bulk_sms'); ?></a></li>    
+                        <li><a href="#tab_8" data-toggle="tab"><?php echo $this->lang->line('mobireach'); ?></a></li>
+                        <li><a href="#tab_9" data-toggle="tab"><?php echo $this->lang->line('nexmo'); ?></a></li>
+                        <li><a href="#tab_10" data-toggle="tab"><?php echo $this->lang->line('africastalking'); ?></a></li>
+                        <li><a href="#tab_11" data-toggle="tab"><?php echo $this->lang->line('sms_egypt'); ?></a></li>
+                        <li><a href="#tab_3" data-toggle="tab"><?php echo $this->lang->line('custom_sms_gateway'); ?></a></li>
 
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
-                            <form role="form" id="clickatell" action="<?php echo site_url('smsconfig/sparrowsms') ?>" class="form-horizontal" method="post">
+                            <form role="form" id="clickatell" action="<?php echo site_url('smsconfig/clickatell') ?>" class="form-horizontal" method="post">
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="minheight170">
                                             <div class="col-md-7">
                                                 <?php
-                                                $sparrowsms_result = check_in_array('sparrowsms', $smslist);
+                                                $clickatell_result = check_in_array('clickatell', $smslist);
                                                 ?>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-5 control-label"><?php echo $this->lang->line('sparrow_token'); ?><small class="req"> *</small></label>
+                                                    <label class="col-sm-5 control-label"><?php echo $this->lang->line('clickatell_username'); ?><small class="req"> *</small></label>
                                                     <div class="col-sm-7">
-                                                        <input autofocus="" type="text" class="form-control" name="sparrowsms_token" value="<?php echo $sparrowsms_result->password; ?>">
-                                                        <span class=" text text-danger sparrowsms_token"></span>
+                                                        <input autofocus="" type="text" class="form-control" name="clickatell_user" value="<?php echo $clickatell_result->username; ?>">
+                                                        <span class=" text text-danger clickatell_user_error"></span>
                                                     </div>
                                                 </div>
-                                                
-                                               
+                                                <div class="form-group">
+                                                    <label class="col-sm-5 control-label"><?php echo $this->lang->line('clickatell_password'); ?><small class="req"> *</small></label>
+                                                    <div class="col-sm-7">
+                                                        <input type="password" class="form-control" name="clickatell_password"  value="<?php echo $clickatell_result->password; ?>">
+                                                        <span class=" text text-danger clickatell_password_error"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5 control-label"><?php echo $this->lang->line('api_key'); ?><small class="req"> *</small></label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" name="clickatell_api_id"  value="<?php echo $clickatell_result->api_id; ?>">
+                                                        <span class=" text text-danger clickatell_api_id_error"></span>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-5 control-label"><?php echo $this->lang->line('status'); ?><small class="req"> *</small></label>
                                                     <div class="col-sm-7">
 
-                                                        <select class="form-control" name="sparrowsms_status">
+                                                        <select class="form-control" name="clickatell_status">
                                                             <?php
                                                             foreach ($statuslist as $s_key => $s_value) {
                                                                 ?>
                                                                 <option 
                                                                     value="<?php echo $s_key; ?>"
                                                                     <?php
-                                                                    if ($sparrowsms_result->is_active == $s_key) {
+                                                                    if ($clickatell_result->is_active == $s_key) {
                                                                         echo "selected=selected";
                                                                     }
                                                                     ?>
@@ -60,12 +81,12 @@
                                                                 }
                                                                 ?>
                                                         </select>
-                                                        <span class=" text text-danger sparrowsms_status_error"></span>
+                                                        <span class=" text text-danger clickatell_status_error"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-5 text text-center disblock">
-                                                <a href="https://sparrowsms.com/" target="_blank"><img src="<?php echo base_url() ?>backend/images/sparrow.png<?php echo img_time(); ?>"><p>https://sparrowsms.com/</p></a>
+                                                <a href="https://www.clickatell.com/" target="_blank"><img src="<?php echo base_url() ?>backend/images/clickatell.png<?php echo img_time(); ?>"><p>https://www.clickatell.com</p></a>
                                             </div>
                                         </div>
 

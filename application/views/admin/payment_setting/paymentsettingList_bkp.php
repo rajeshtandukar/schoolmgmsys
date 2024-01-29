@@ -8,33 +8,71 @@
                        <h3 class="box-title titlefix"><?php echo $this->lang->line('payment_methods'); ?></h3>
                     </div>
                     <ul class="nav nav-tabs nav-tabs2">
-                        <li class="active"><a href="#tab_1" data-toggle="tab"><?php echo $this->lang->line('khalti'); ?></a></li>
-                       
+                        <li class="active"><a href="#tab_1" data-toggle="tab"><?php echo $this->lang->line('paypal'); ?></a></li>
+                        <li><a href="#tab_2" data-toggle="tab"><?php echo $this->lang->line('stripe'); ?></a></li>
+                        <li><a href="#tab_3" data-toggle="tab"><?php echo $this->lang->line('payu'); ?></a></li>
+                        <li><a href="#tab_4" data-toggle="tab"><?php echo $this->lang->line('ccavenue'); ?></a></li>
+                        <li><a href="#tab_5" data-toggle="tab"><?php echo $this->lang->line('instamojo'); ?></a></li>
+                        <li><a href="#tab_6" data-toggle="tab"><?php echo $this->lang->line('paystack'); ?></a></li>
+                        <li><a href="#tab_7" data-toggle="tab"><?php echo $this->lang->line('razorpay'); ?></a></li>
+                        <li><a href="#tab_8" data-toggle="tab"><?php echo $this->lang->line('paytm'); ?></a></li>
+                        <li><a href="#tab_9" data-toggle="tab"><?php echo $this->lang->line('midtrans'); ?></a></li>
+                        <li><a href="#tab_10" data-toggle="tab"><?php echo $this->lang->line('pesapal'); ?></a></li>
+                        <li><a href="#tab_11" data-toggle="tab"><?php echo $this->lang->line('flutter_wave'); ?> </a></li>
+                        <li><a href="#tab_12" data-toggle="tab"><?php echo $this->lang->line('ipay_africa'); ?></a></li>
+                        <li><a href="#tab_13" data-toggle="tab"><?php echo $this->lang->line('jazzcash'); ?></a></li>
+                        <li><a href="#tab_14" data-toggle="tab"><?php echo $this->lang->line('billplz'); ?></a></li>
+                        <li><a href="#tab_15" data-toggle="tab"><?php echo $this->lang->line('sslcommerz'); ?></a></li>
+                        <li><a href="#tab_16" data-toggle="tab"><?php echo $this->lang->line('walkingm'); ?></a></li>
+                        <li><a href="#tab_17" data-toggle="tab"><?php echo $this->lang->line('mollie'); ?></a></li>
+                        <li><a href="#tab_18" data-toggle="tab"><?php echo $this->lang->line('cashfree'); ?></a></li>
+                        <li><a href="#tab_19" data-toggle="tab"><?php echo $this->lang->line('payfast'); ?></a></li>
+                        <li><a href="#tab_20" data-toggle="tab"><?php echo $this->lang->line('toyyibPay'); ?></a></li>
+                        <li><a href="#tab_21" data-toggle="tab"><?php echo $this->lang->line('twocheckout'); ?></a></li>
+                        <li><a href="#tab_22" data-toggle="tab"><?php echo $this->lang->line('skrill'); ?></a></li>
+                        <li><a href="#tab_23" data-toggle="tab"><?php echo $this->lang->line('payhere'); ?></a></li>
+                        <li><a href="#tab_24" data-toggle="tab"><?php echo $this->lang->line('onepay'); ?></a></li>
                     </ul>
                     <div class="tab-content pb0">
                         <div class="tab-pane active" id="tab_1">
-                            <form role="form" id="khalti" action="<?php echo site_url('admin/paymentsettings/khalti') ?>" class="form-horizontal" method="post">
+                            <form role="form" id="paypal" action="<?php echo site_url('admin/paymentsettings/paypal') ?>" class="form-horizontal" method="post">
                                 <div class="box-body">
                                     <div class="row">
                                             <div class="col-md-7">
                                                 <?php
-$paypal_result = check_in_array('khalti', $paymentlist);
+$paypal_result = check_in_array('paypal', $paymentlist);
 ?>
                                                 <div class="form-group">
                                                     <label class="col-sm-5 control-label" for="exampleInputEmail1">
-                                                        <?php echo $this->lang->line('khalti_authorization'); ?><small class="req"> *</small>
+                                                        <?php echo $this->lang->line('paypal_username'); ?><small class="req"> *</small>
                                                     </label>
                                                     <div class="col-lg-7 col-md-7 col-sm-7">
-                                                        <input autofocus="" id="name" name="khalti_authorization" placeholder="" type="text" class="form-control" value="<?php echo isset($paypal_result->api_secret_key) ? $paypal_result->api_secret_key : ""; ?>" />
-                                                        <span class=" text text-danger khalti_authorization_error"></span>
+                                                        <input autofocus="" id="name" name="paypal_username" placeholder="" type="text" class="form-control" value="<?php echo isset($paypal_result->api_username) ? $paypal_result->api_username : ""; ?>" />
+                                                        <span class=" text text-danger paypal_username_error"></span>
                                                     </div>
                                                 </div>
-                                               
+                                                <div class="form-group">
+                                                    <label class="control-label col-lg-5 col-md-5 col-sm-5" for="exampleInputEmail1">
+                                                        <?php echo $this->lang->line('paypal_password'); ?><small class="req"> *</small>
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-7">
+                                                        <input id="name" name="paypal_password" placeholder="" type="password" class="form-control"  value="<?php echo isset($paypal_result->api_password) ? $paypal_result->api_password : ""; ?>" />
+                                                        <span class=" text text-danger paypal_password_error"></span>
+                                                    </div></div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12" for="exampleInputEmail1">
+                                                        <?php echo $this->lang->line('paypal_signature'); ?><small class="req"> *</small>
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                                                        <input id="name" name="paypal_signature" placeholder="" type="text" class="form-control"  value="<?php echo isset($paypal_result->api_signature) ? $paypal_result->api_signature : ""; ?>" />
+                                                        <span class=" text text-danger paypal_signature_error"></span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-5 text text-center disblock">
-                                                <a href="https://www.khalti.com/" target="_blank">
-                                                   
-                                                    <img src="<?php echo $this->media_storage->getImageURL('backend/images/khalti.png'); ?>" width="200"><p>https://www.khalti.com</p></a>
+                                                <a href="https://www.paypal.com/in/home" target="_blank">
+                                                    <h5><?php echo $this->lang->line('multinational_payment_gateway'); ?></h5>
+                                                    <img src="<?php echo $this->media_storage->getImageURL('backend/images/paypal.png'); ?>" width="200"><p>https://www.paypal.com</p></a>
                                             </div>
                                     </div>
                                 </div>
@@ -43,7 +81,7 @@ $paypal_result = check_in_array('khalti', $paymentlist);
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 pl-sm-6">
                                             <?php if ($this->rbac->hasPrivilege('payment_methods', 'can_edit')) {?>
-                                                <button type="submit" class="btn btn-primary khalti_save ml-n1 float-sm-right" data-loading-text="<i class='fa fa-spinner fa-spin '></i> <?php echo $this->lang->line('save'); ?>"><?php echo $this->lang->line('save'); ?></button>
+                                                <button type="submit" class="btn btn-primary paypal_save ml-n1 float-sm-right" data-loading-text="<i class='fa fa-spinner fa-spin '></i> <?php echo $this->lang->line('save'); ?>"><?php echo $this->lang->line('save'); ?></button>
                                             <?php }?>
                                         </div>
                                     </div>
@@ -1179,27 +1217,245 @@ $radio_check = check_selected($paymentlist);
 
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="payment_setting" value="khalti" <?php
-if ($radio_check == 'khalti') {
+                                        <input type="radio" name="payment_setting" value="paypal" <?php
+if ($radio_check == 'paypal') {
     echo "checked";
 }
 ?>>
-                                        <?php echo $this->lang->line('khalti'); ?>
+                                        <?php echo $this->lang->line('paypal'); ?>
                                     </label>
                                 </div>
-                               
-                               
-                               
-                               
-                               
-                                
-                               
-                                 
-                                
-                               
-                               
-                                
-                                
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="stripe" <?php
+if ($radio_check == 'stripe') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('stripe'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="payu" <?php
+if ($radio_check == 'payu') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('payu'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="ccavenue" <?php
+if ($radio_check == 'ccavenue') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('ccavenue'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="instamojo" <?php
+if ($radio_check == 'instamojo') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('instamojo'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="payment_setting" value="paystack" <?php
+if ($radio_check == 'paystack') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('paystack'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="razorpay" <?php
+if ($radio_check == 'razorpay') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('razorpay'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="paytm" <?php
+if ($radio_check == 'paytm') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('paytm'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="midtrans" <?php
+if ($radio_check == 'midtrans') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('midtrans'); ?>
+                                    </label>
+                                </div>
+                                  <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="pesapal" <?php
+if ($radio_check == 'pesapal') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('pesapal'); ?>
+                                    </label>
+                                </div>
+                                 <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="flutterwave" <?php
+if ($radio_check == 'flutterwave') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('flutter_wave'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="ipayafrica" <?php
+if ($radio_check == 'ipayafrica') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('ipay_africa'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="jazzcash" <?php
+if ($radio_check == 'jazzcash') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('jazzcash'); ?>
+                                    </label>
+                                </div>
+
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="billplz" <?php
+if ($radio_check == 'billplz') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('billplz'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="sslcommerz" <?php
+if ($radio_check == 'sslcommerz') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('sslcommerz'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="walkingm" <?php
+if ($radio_check == 'walkingm') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('walkingm'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="mollie" <?php
+if ($radio_check == 'mollie') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('mollie'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="cashfree" <?php
+if ($radio_check == 'cashfree') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('cashfree'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="payfast" <?php
+if ($radio_check == 'payfast') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('payfast'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="toyyibpay" <?php
+if ($radio_check == 'toyyibpay') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('toyyibPay'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="twocheckout" <?php
+if ($radio_check == 'twocheckout') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('twocheckout'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="skrill" <?php
+if ($radio_check == 'skrill') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('skrill'); ?>
+                                    </label>
+                                </div>
+                                 <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="payhere" <?php
+if ($radio_check == 'payhere') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('payhere'); ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"  name="payment_setting" value="onepay" <?php
+if ($radio_check == 'onepay') {
+    echo "checked";
+}
+?>>
+                                        <?php echo $this->lang->line('onepay'); ?>
+                                    </label>
+                                </div>
                                  <span class="text text-danger payment_setting_error"></span>
                                 <div class="radio">
                                     <label>
@@ -1301,41 +1557,6 @@ function check_in_array($find, $array)
 
         e.preventDefault(); // avoid to execute the actual submit of the form.
     });
-
-    $("#khalti").submit(function (e) {
-        $("[class$='_error']").html("");
-
-        var $this = $(".khalti_save");
-        $this.button('loading');
-        var url = $(this).attr('action'); // the script where you handle the form input.
-
-        $.ajax({
-            type: "POST",
-            dataType: 'JSON',
-            url: url,
-            data: $("#khalti").serialize(), // serializes the form's elements.
-            success: function (data, textStatus, jqXHR)
-            {
-                if (data.st === 1) {
-                    $.each(data.msg, function (key, value) {
-                        $('.' + key + "_error").html(value);
-                    });
-                } else {
-                    successMsg(data.msg);
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                $(".custom_loader").html("");
-                //if fails
-            }, complete: function () {
-                $this.button('reset');
-            }
-        });
-
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-    });
-
 
     $("#paypal").submit(function (e) {
         $("[class$='_error']").html("");

@@ -2364,3 +2364,14 @@ $lang['biometric']= "Biometric";
 $lang['manual']= "Manual";
 $lang['staff_day_wise_attendance_report']= "Staff Day Wise Attendance Report";
 $lang['student_day_wise_attendance_report']= "Student Day Wise Attendance Report";
+
+
+#SMS
+$lang['sparrow_sms'] = "Sparrow SMS";	
+$lang['sparrow_token'] = "Token";
+
+#Payment Gateways
+$lang['khalti'] = "Khalti";	
+$lang['khalti_authorization'] = "Authoriation Key";	
+
+

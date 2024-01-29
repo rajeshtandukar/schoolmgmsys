@@ -18,6 +18,11 @@ class Updater extends Admin_Controller
         if (!$this->rbac->hasPrivilege('superadmin', 'can_view')) {
             access_denied();
         }
+
+        //Only Access To SaaS Provider
+        if (!is_main_domain()){  
+                access_denied();
+        }
         $data = array();
         $this->session->set_userdata('top_menu', 'System Settings');
         $this->session->set_userdata('sub_menu', 'System Settings/updater');

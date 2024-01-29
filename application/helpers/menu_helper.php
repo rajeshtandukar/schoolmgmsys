@@ -453,3 +453,28 @@ function access_permission_remove_comma($m_permission_value)
     $module_permission_seprated = array_map('trim', explode(',', preg_replace('/\s+/', '', $m_permission_value)));
     return $module_permission_seprated;
 }
+
+
+function is_main_domain(){
+    
+    if (isset($_SERVER['HTTP_HOST']) && !empty($_SERVER['HTTP_HOST'])) {
+
+        // Get the current domain
+        $currentDomain = $_SERVER['HTTP_HOST'];
+
+        // Remove 'www.' if present
+        $currentDomain = preg_replace('/^www\./', '', $currentDomain);
+
+        // Split the domain into parts
+        $domainParts = explode('.', $currentDomain);
+
+        // Check if there are more than two parts (subdomain.domain)
+        if (count($domainParts) > 2) {
+            return false;
+        } else {
+            return true;
+        }       
+    }
+
+    return false;
+}

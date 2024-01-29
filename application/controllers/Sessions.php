@@ -17,6 +17,12 @@ class Sessions extends Admin_Controller
         if (!$this->rbac->hasPrivilege('session_setting', 'can_view')) {
             access_denied();
         }
+
+        // Only access by SaaS provider
+        if (!is_main_domain()){  
+             access_denied();
+        }
+
         $this->session->set_userdata('top_menu', 'System Settings');
         $this->session->set_userdata('sub_menu', 'sessions/index');
         $data['title']       = 'Session List';
@@ -45,6 +51,12 @@ class Sessions extends Admin_Controller
         if (!$this->rbac->hasPrivilege('session_setting', 'can_delete')) {
             access_denied();
         }
+
+         // Only access by SaaS provider
+        if (!is_main_domain()){  
+             access_denied();
+        }
+
         $this->session->set_flashdata('list_msg', '<div class="alert alert-success text-left">' . $this->lang->line('delete_message') . '</div>');
         $this->session_model->remove($id);
         redirect('sessions/index');
@@ -55,6 +67,12 @@ class Sessions extends Admin_Controller
         if (!$this->rbac->hasPrivilege('session_setting', 'can_add')) {
             access_denied();
         }
+
+         // Only access by SaaS provider
+        if (!is_main_domain()){  
+             access_denied();
+        }
+
         $session_result      = $this->session_model->getAllSession();
         $data['sessionlist'] = $session_result;
         $data['title']       = 'Add Session';
@@ -77,6 +95,12 @@ class Sessions extends Admin_Controller
         if (!$this->rbac->hasPrivilege('session_setting', 'can_edit')) {
             access_denied();
         }
+
+         // Only access by SaaS provider
+        if (!is_main_domain()){  
+             access_denied();
+        }
+
         $session_result      = $this->session_model->getAllSession();
         $data['sessionlist'] = $session_result;
         $data['title']       = 'Edit Session';

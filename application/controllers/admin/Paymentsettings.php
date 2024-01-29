@@ -30,6 +30,29 @@ class Paymentsettings extends Admin_Controller
         $this->load->view('layout/footer', $data);
     }
 
+    public function khalti()
+    {
+        $this->form_validation->set_error_delimiters('', '');
+        $this->form_validation->set_rules('khalti_authorization', $this->lang->line('khalti_authorization'), 'trim|required|xss_clean');       
+
+        if ($this->form_validation->run()) {
+            $data = array(
+                'payment_type'  => 'khalti',
+                'api_secret_key'  => $this->input->post('khalti_authorization'),                              
+            );
+            $this->paymentsetting_model->add($data);
+            echo json_encode(array('st' => 0, 'msg' => $this->lang->line('update_message')));
+        } else {
+
+            $data = array(
+                'khalti_authorization'  => form_error('khalti_authorization'),
+             
+            );
+
+            echo json_encode(array('st' => 1, 'msg' => $data));
+        }
+    }
+
     public function paypal()
     {
         $this->form_validation->set_error_delimiters('', '');

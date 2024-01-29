@@ -14,6 +14,11 @@ class Frontcms extends Admin_Controller
         $this->load->config('ci-blog');
         $this->front_themes = $this->config->item('ci_front_themes');
         $this->load->library('media_storage');
+
+        // Access to SaaS provoder only
+        if (!is_main_domain()){  
+            access_denied();
+        }
     }
 
     public function index()

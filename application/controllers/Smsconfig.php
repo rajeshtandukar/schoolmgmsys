@@ -28,6 +28,31 @@ class Smsconfig extends Admin_Controller
         $this->load->view('layout/footer', $data);
     }
 
+    public function sparrowsms()
+    {
+        $this->form_validation->set_error_delimiters('', '');
+        $this->form_validation->set_rules('sparrowsms_token', $this->lang->line('sparrowsms_token'), 'required');      
+        $this->form_validation->set_rules('sparrowsms_status', $this->lang->line('status'), 'required');
+        if ($this->form_validation->run()) {
+
+            $data = array(
+                'type'      => 'sparrowsms',
+                'password'  => $this->input->post('sparrowsms_token'),             
+                'is_active' => $this->input->post('sparrowsms_status'),
+            );
+            $this->smsconfig_model->add($data);
+            echo json_encode(array('st' => 0, 'msg' => $this->lang->line('update_message')));
+        } else {
+
+            $data = array(
+                'sparrowsms_token'     => form_error('sparrowsms_token'),               
+                'sparrowsms_status'   => form_error('sparrowsms_status'),
+            );
+
+            echo json_encode(array('st' => 1, 'msg' => $data));
+        }
+    }
+
     public function clickatell()
     {
         $this->form_validation->set_error_delimiters('', '');

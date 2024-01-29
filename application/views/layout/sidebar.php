@@ -53,6 +53,17 @@ if (!empty($side_list_value->submenus)) {
                             <?php
 foreach ($side_list_value->submenus as $submenu_key => $submenu_value) {
 
+        if ($submenu_value->lang_key == 'session_setting' || 
+            $submenu_value->lang_key =='system_update' || 
+            $submenu_value->lang_key =='front_cms_setting' 
+        ){
+            if (!is_main_domain()){  
+                continue;
+                }
+        }
+
+        
+
                         $sidebar_permission = access_permission_sidebar_remove_pipe($submenu_value->access_permissions);
                         $sidebar_access     = false;
 
@@ -83,12 +94,9 @@ foreach ($side_list_value->submenus as $submenu_key => $submenu_value) {
                             }
 
                             ?>
-
-                        <li class="<?php echo activate_submenu($submenu_value->activate_controller, explode(',', $submenu_value->activate_methods)); ?>"><a href="<?php echo site_url($submenu_value->url); ?>"><i class="fa fa-angle-double-right"></i><?php echo $this->lang->line($submenu_value->lang_key); ?></a></li>
-
-
+                            <li class="<?php echo activate_submenu($submenu_value->activate_controller, explode(',', $submenu_value->activate_methods)); ?>"><a href="<?php echo site_url($submenu_value->url); ?>"><i class="fa fa-angle-double-right"></i><?php echo $this->lang->line($submenu_value->lang_key); ?></a></li>
                           <?php
-}
+                        }
 
                     }
 
@@ -98,6 +106,8 @@ foreach ($side_list_value->submenus as $submenu_key => $submenu_value) {
                             <?php
 
                 }
+
+
                 ?>
                                 </li>
                             <?php
